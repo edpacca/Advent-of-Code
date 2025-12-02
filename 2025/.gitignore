@@ -1,4 +1,6 @@
 input*.py
+inputs/
 __pycache__/
 env/
 test_input*.py
+timeit.py
