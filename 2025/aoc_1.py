@@ -1,5 +1,17 @@
-from input1 import inputs
-from test_input1 import test_input
+from functools import wraps
+import time
+from inputs.input1 import inputs
+from inputs.test_input1 import test_input
+
+def timeit(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+        print(f"{func.__name__} took {end - start:.6f} seconds")
+        return result
+    return wrapper
 
 # commands = test_input
 commands = inputs
@@ -27,6 +39,7 @@ def  sum_all():
         abs_pos += rot
     print("abs pos: ", abs_pos, "final pos: ", abs(abs_pos % 100))
 
+@timeit
 def part1():
     start = 50
     current = start
@@ -41,6 +54,7 @@ def part1():
     print(zero_counter)
     return current
 
+@timeit
 def part2():
     start = 50
     current = start
@@ -53,7 +67,7 @@ def part2():
         prev = current
         current = result
         click_counter += clicks
-        print(f"{prev:<2} + {rot:<5} = ({prev + rot:<5}) {result:<5}  |   {clicks:<5} -> {click_counter}")
+        # print(f"{prev:<2} + {rot:<5} = ({prev + rot:<5}) {result:<5}  |   {clicks:<5} -> {click_counter}")
 
     print("current: ", current)
     print ("clicks: ", click_counter)

@@ -1,4 +1,3 @@
-from typing import List, Tuple
 from inputs.input2 import inputs
 from inputs.test_input2 import test_inputs
 from timeit import timeit
@@ -6,7 +5,7 @@ from timeit import timeit
 # data = test_inputs
 data = inputs
 
-def parse_range_string(range_str: str) -> Tuple[str, str]:
+def parse_range_string(range_str: str) -> tuple[str, str]:
     split_str = range_str.split("-")
     return (split_str[0], split_str[1])
 
@@ -23,6 +22,8 @@ def compare_chunks(input_str: str, chunk_size: int, num_splits: int) -> bool:
         start = i * chunk_size
         end = start + chunk_size
         chunk = input_str[start:end]
+        if i > 0 and chunk not in chunks:
+            return
         chunks.append(chunk)
     return all(i == chunks[0] for i in chunks)
 
@@ -39,7 +40,7 @@ def validate_part2(number: int) -> bool:
     return True
 
 @timeit
-def part1(data: List[str]):
+def part1(data: list[str]):
     invalids = []
     for range_str in data:
         (start, end) = parse_range_string(range_str)
@@ -50,7 +51,7 @@ def part1(data: List[str]):
     print(sum(invalids))
 
 @timeit
-def part2(data: List[str]):
+def part2(data: list[str]):
     invalids = []
     for range_str in data:
         (start, end) = parse_range_string(range_str)
