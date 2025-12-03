@@ -3,16 +3,6 @@ import time
 from inputs.input1 import inputs
 from inputs.test_input1 import test_input
 
-def timeit(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        start = time.perf_counter()
-        result = func(*args, **kwargs)
-        end = time.perf_counter()
-        print(f"{func.__name__} took {end - start:.6f} seconds")
-        return result
-    return wrapper
-
 # commands = test_input
 commands = inputs
 
