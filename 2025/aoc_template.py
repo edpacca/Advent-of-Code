@@ -1,15 +1,18 @@
-from input import inputs
-from test_input import test_input
+from inputs.input4 import inputs
+from inputs.test_input4 import test_inputs
 
-def part1():
+data = inputs
+data = test_inputs
+
+def part1(data: list[str]):
     pass
 
-def part2():
+def part2(data: list[str]):
     pass
 
 def main():
-    part1()
-    part2()
+    part1(data)
+    # part2(data)
 
 if __name__ == "__main__":
     main()
