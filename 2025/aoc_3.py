@@ -14,13 +14,6 @@ def determine_voltage_pt1(nums: list[int]) -> int:
     next_digit = max(nums[first_digit_index + 1:])
     return int(str(f"{first_digit}{next_digit}"))
 
-def get_next_digit(nums: list[int], remaining_digits: int) -> tuple[str, list[int]]:
-    check_length = len(nums) - remaining_digits
-    next_digit = max(nums[:check_length])
-    index_of = nums.index(next_digit)
-    slice = nums[index_of + 1:]
-    return (str(next_digit), slice)
-
 def determine_voltage_pt2(nums: list[int], total_digits: int) -> int:
     digit_str = ""
     remaining = nums
@@ -35,6 +28,13 @@ def determine_voltage_pt2(nums: list[int], total_digits: int) -> int:
         remaining = next_remaining_list
 
     return int(digit_str)
+
+def get_next_digit(nums: list[int], remaining_digits: int) -> tuple[str, list[int]]:
+    check_length = len(nums) - remaining_digits
+    next_digit = max(nums[:check_length])
+    index_of = nums.index(next_digit)
+    slice = nums[index_of + 1:]
+    return (str(next_digit), slice)
 
 @timeit
 def part1(data: list[str]) -> int:
